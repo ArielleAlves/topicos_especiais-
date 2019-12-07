@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block sobreNos %}
+
+{% endblock %}
+
+<!-- Deixa o bloco vazio -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Bloco Principal -->
+{% block container %}
+
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+
+            <h3 class="border-bottom">
+                Lista de Musicas cadastrados
+
+                <a href="{% url 'cadastrar-musica' %}" class="float-right btn btn-primary btn-sm">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Nova Musica
+                </a>
+            </h3>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg mt-4">
+
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Estilo</th>
+                        <th>Nome</th>
+                        <th>Autor</th>
+                        <th>Ano</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for musica in object_list %}
+                    <tr>
+                        <td>{{ musica.tipo }}</td>
+                        <td>{{ musica.estilo }}</td>
+                        <td>{{ musica.nome }}</td>
+                        <td>{{ musica.autor }}</td>
+                        <td>{{ musica.ano }}</td>
+
+                        <td>
+                            <a href="{% url 'editar-musica' musica.pk %}" class="btn btn-outline-warning btn-sm">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+
+                            <a href="{% url 'excluir-musica' musica.pk %}" class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="100%">Nenhuma música cadastrado</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

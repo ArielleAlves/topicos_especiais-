@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block header %}  {% endblock %}
+
+{% block container %}
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+            <h3>{{ titulo }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+
+            <form method="post">
+                <!-- Todo formulário tem que ter essa validação -->
+                {% csrf_token %}
+                <!-- Gera o formulário -->
+                {{ form|crispy }}
+                <button type="submit" class="btn {{ classe }}">
+                    {{ botao }}
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

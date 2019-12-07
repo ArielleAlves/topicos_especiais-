@@ -1,0 +1,53 @@
+{% extends 'aulas/base.html' %}
+
+{% load static %}
+
+<!-- Deixa o bloco vazio -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Bloco Principal -->
+{% block container %}
+
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg detalhes-animais">
+
+            <h3 class="border-bottom">
+                Detalhes das Musicas
+            </h3>
+
+            <img src="{{object.foto}}" alt="" width="200">
+            <br>
+
+            <span><b>Nome:</b></span>
+            <span>{{ object.nome }}</span>
+            <br>
+
+            <span><b>Tipo:</b></span>
+            <span>{{ object.tipo }}</span>
+            <br>
+
+            <span><b>Estilo:</b></span>
+            <span>{{ object.estilo }}</span>
+            <br>
+
+            <span><b>Autor:</b></span>
+            <span>{{ object.autor }}</span>
+            <br>
+
+            <span><b>Ano:</b></span>
+            <span>{{ object.ano }}</span>
+            <br>
+
+            <a href="{% url 'index' %}" class="d-inline-block mt-4">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                Voltar
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

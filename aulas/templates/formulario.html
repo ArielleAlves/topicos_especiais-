@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!-- Carrega o plugin do form com bs4 -->
+{% load crispy_forms_tags %}
+
+{% block sobreNos %}
+
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block container %}
+
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+            <h3>{{ titulo }}</h3>
+
+            {% if botao == 'Excluir' %}
+            <hr>
+            <h4 class="font-weight-normal">Registro a excluir: {{ object }}</h4>
+            <hr>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+
+            <form method="post">
+
+                <!-- Todo formulário tem que ter essa validação -->
+                {% csrf_token %}
+
+                <!-- Gera o formulário -->
+                {{ form|crispy }}
+
+                <!-- Cria um botão para submeter o form e outro para voltar -->
+                <button type="submit" class="btn {{ classeBotao }}">
+                    {{ botao }}
+                </button>
+
+                <a href="{% url 'index' %}" class="btn btn-secondary">
+                    Voltar
+                </a>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'vendor/mask/jquery.mask.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('input[name*=telefone]').mask(SPMaskBehavior, spOptions);
+
+    });
+</script>
+{% endblock %}
