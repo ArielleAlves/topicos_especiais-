@@ -70,7 +70,7 @@ class TipoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 class EstiloCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u"Administrador"
     model = Estilo
-    template_name = "aulas/formulario.html"
+    template_name = "formulario.html"
     success_url = reverse_lazy("listar-estilo")
     fields = ['descricao']
 
@@ -130,15 +130,9 @@ class TipoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
 class EstiloUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"Administrador"
     model = Estilo
-    template_name = "aulas/formulario.html"
+    template_name = "formulario.html"
     success_url = reverse_lazy("listar-estilo")
     fields = ['descricao']
-
-    def get_object(self, queryset=None):
-        self.object = get_object_or_404(
-            Pedido, pk=self.kwargs['pk'], usuario=self.request.user)
-        return self.object
-
 
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
@@ -176,7 +170,7 @@ class MusicaUpdate(LoginRequiredMixin, UpdateView):
 class TipoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"Administrador"
     model = Tipo
-    template_name = "aulas/formulario.html"
+    template_name = "formulario.html"
     success_url = reverse_lazy("listar-tipos")
 
     def get_context_data(self, *args, **kwargs):
@@ -189,7 +183,7 @@ class TipoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
 class EstiloDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     group_required = u"Administrador"
     model = Estilo
-    template_name = "aulas/formulario.html"
+    template_name = "formulario.html"
     success_url = reverse_lazy("listar-estilo")
 
     def get_context_data(self, *args, **kwargs):
@@ -220,7 +214,7 @@ class TipoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 class EstiloList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     group_required = u"Administrador"
     model = Estilo
-    template_name = "lista/list_estilo.html"
+    template_name = "aulas/lista/list_estilo.html"
 
 class MusicaList(LoginRequiredMixin, ListView):
     model = Musica
@@ -244,14 +238,14 @@ class MusicaDetalhes(DetailView):
 
     # Está comentado porque neste caso não faz sentido... #
     # Pegar somente se o animal for do usuário cadastrado
-    '''
+    
     def get_object(self, queryset=None):
         # Busca somente a Musica com a pk da URL que pertence ao usuário
         # Se o usuário tentar alguma pk diferente, vai dar página 404
-        self.object = get_object_or_404(Animal, pk=self.kwargs['pk'], usuario=self.request.user,)
+        self.object = get_object_or_404(Musica, pk=self.kwargs['pk'], usuario=self.request.user,)
         # Retorna o objeto que será enviado ao template
         return self.object
-    '''
+    
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

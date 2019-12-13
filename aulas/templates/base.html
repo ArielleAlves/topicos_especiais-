@@ -13,7 +13,7 @@
   <title>Agency - Start Bootstrap Theme</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">  
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -23,6 +23,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/agency.css' %}" rel="stylesheet">
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
 
 </head>
 
@@ -43,10 +44,6 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
 
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'partitura'%}">Partitura</a>
-          </li>
-
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
@@ -55,10 +52,14 @@
         {% endif %}
 
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contact">Contato</a>
+            <a class="nav-link js-scroll-trigger" href="/#contact">Contato</a>
           </li>
 
-
+          {% if request.user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'listar-estilo'%}">Estilo</a>
+          </li>  
+          {% endif %}
 
           {% if request.user.is_authenticated %}
           <li class="nav-item">

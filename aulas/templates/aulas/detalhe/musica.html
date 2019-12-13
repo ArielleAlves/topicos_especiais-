@@ -1,10 +1,13 @@
-{% extends 'aulas/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
 <!-- Deixa o bloco vazio -->
 {% block header %}
 
+{% endblock %}
+
+{% block sobreNos %}
 {% endblock %}
 
 <!-- Bloco Principal -->
@@ -42,7 +45,7 @@
             <span>{{ object.ano }}</span>
             <br>
 
-            <a href="{% url 'index' %}" class="d-inline-block mt-4">
+            <a href="{% url 'listar-musica' %}" class="d-inline-block mt-4">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Voltar
             </a>
