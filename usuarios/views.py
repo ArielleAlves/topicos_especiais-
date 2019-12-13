@@ -19,7 +19,7 @@ from django.shortcuts import get_object_or_404
 # Não precisa usar o model = User porque o form_class que vai definir quem são os campos desse modelo a ser inserido
 class UsuarioCreate(CreateView):
     form_class = UserCreationForm
-    template_name = "aula/formulario.html"
+    template_name = "usuarios/form.html"
     success_url = reverse_lazy("login")
 
     # Método utilizado para enviar dados ao template

@@ -32,10 +32,13 @@
                 {% csrf_token %}
                 <!-- Gera o formulário -->
                 {{ form|crispy }}
+                <br/>
                 <button type="submit" class="btn {{ classe }}">
                     {{ botao }}
                 </button>
             </form>
+            <br/>
+            <a class="btn {{classe}}" href="{% url 'user-create'%}">Cadastre-se</a>
 
             {% endif %}
 
@@ -43,4 +46,7 @@
     </div>
 
 </div>
+{% endblock %}
+
+{% block contato %}
 {% endblock %}

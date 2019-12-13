@@ -9,7 +9,7 @@ urlpatterns = [
     path('registrar/', UsuarioCreate.as_view(), name="user-create"),
 
     path('login/', auth_views.LoginView.as_view(
-        template_name='usuarios/form.html',
+        template_name='usuarios/login.html',
         extra_context={
             'titulo': 'Autenticação',
             'botao': 'Entrar',
